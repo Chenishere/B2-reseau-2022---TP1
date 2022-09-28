@@ -107,7 +107,7 @@ En utilisant l'interface graphique de votre OS :
 - trouvez l'IP, la MAC et la [gateway](../../cours/lexique.md#passerelle-ou-gateway) pour l'interface WiFi de votre PC
 ```bash
 Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
-<img width="349" alt="Capture d’écran 2022-09-28 à 16 00 14" src="https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png">
+![Alt text](https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png)
 
 <img width="642" alt="Capture d’écran 2022-09-28 à 15 44 48" src="https://user-images.githubusercontent.com/93198837/192796081-6d5885a5-819e-4f22-ba75-fa9dd900459b.png">
 ```
