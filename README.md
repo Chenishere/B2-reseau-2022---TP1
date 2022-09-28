@@ -73,6 +73,17 @@ En utilisant la ligne de commande (CLI) de votre OS :
 **🌞 Affichez les infos des cartes réseau de votre PC**
 
 - nom, [adresse MAC](../../cours/lexique.md#mac-media-access-control) et adresse IP de l'interface WiFi
+```bash
+ynce@MacBook-Pro-de-Yanice ~ % ifconfig en0
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+	options=6463<RXCSUM,TXCSUM,TSO4,TSO6,CHANNEL_IO,PARTIAL_CSUM,ZEROINVERT_CSUM>
+	ether f0:18:98:77:25:f9 
+	inet6 fe80::8d2:1520:e48b:5408%en0 prefixlen 64 secured scopeid 0x6 
+	inet 10.33.19.102 netmask 0xfffffc00 broadcast 10.33.19.255
+	nd6 options=201<PERFORMNUD,DAD>
+	media: autoselect
+	status: active
+```
 - nom, [adresse MAC](../../cours/lexique.md#mac-media-access-control) et adresse IP de l'interface Ethernet
 
 **🌞 Affichez votre gateway**
@@ -90,7 +101,9 @@ En utilisant l'interface graphique de votre OS :
 ### Questions
 
 - 🌞 à quoi sert la [gateway](../../cours/lexique.md#passerelle-ou-gateway) dans le réseau d'YNOV ?
-
+```bash 
+En informatique, une passerelle est un dispositif permettant de relier deux réseaux informatiques différents, comme par exemple un réseau local et l'Internet. Dans le réseau Ynov, le gateway va permettre de lier le réseau interne d'ynov avec celui de nos machine.
+```
 ## 2. Modifications des informations
 
 ### A. Modification d'adresse IP (part 1)  
@@ -111,76 +124,6 @@ En utilisant l'interface graphique de votre OS :
   - quand une de ces personnes envoie un message, aucun problème, l'adresse du destinataire est unique, la lettre sera reçue
   - par contre, pour envoyer un message à l'une de ces deux personnes, le facteur sera dans l'impossibilité de savoir dans quelle boîte aux lettres il doit poser le message
   - ça marche à l'aller, mais pas au retour
-
-### B. Table ARP
-
-La table ARP c'est votre "table de voisinnage". Elle contient la liste des adresses MAC des machines avec qui vous avez communiqué récemment.
-
-Quand deux machines communiquent, elles enregistrent mutuellement l'adresse MAC et l'adresse IP de l'autre dans cette table.
-
-> L'échange d'adresse MAC se fait de façon automatique, dès qu'on essaie de contacter une machine via son IP, et se fait à l'aide du protocole ARP, que nous verrons plus tard.
-
-🌞 Exploration de la table ARP
-
-- depuis la ligne de commande, afficher la table ARP
-- identifier l'adresse MAC de la passerelle de votre réseau, et expliquer comment vous avez repéré cette adresse MAC spécifiquement
-
-🌞 Et si on remplissait un peu la table ?
-
-- envoyez des ping vers des IP du même réseau que vous. Lesquelles ? menfou, random. Envoyez des ping vers au moins 3-4 machines.
-- affichez votre table ARP
-- listez les adresses MAC associées aux adresses IP que vous avez ping
-
----
-
-Ping des IP pour savoir si elles sont disponibles, c'est possible, mais c'est chiant.  
-Ca serait bien un outil pour scanner le réseau à un instant T afin de choisir une adresse IP libre, non ?
-
-### C. `nmap`
-
-`nmap` est un outil de scan réseau. On peut faire des tas de choses avec, on va se cantonner à des choses basiques pour le moment.  
-Les commandes `nmap` se présentent comme : `nmap OPTIONS CIBLE`
-
-- `nmap` est le nom de la commande
-- les `OPTIONS` se précisent avec le caractère `-` comme pour beaucoup de commandes
-  - exemple : `nmap -sP` (`sP` c'est un Ping Scan, on y reviendra)
-- la cible est soit une adresse de réseau (on cible tous les hôtes du réseau), soit un hôte simple 
-  - hôte simple : `nmap -sP 10.33.1.53`
-  - [réseau](../../cours/lexique.md#adresse-de-r%C3%A9seau) : `nmap -sP 10.33.0.0/22` (notation *CIDR*)
-
----
-
-Téléchargez `nmap` depuis le [site officiel](https://nmap.org/download.html) pour votre OS
-
----
-
-- exemple de commande pour le réseau YNOV  `nmap -sn -PE <ADRESSE_DU_RESEAU_CIBLE>` pour trouver les hôtes actuellement sur le réseau
-  - le réseau YNOV c'est `10.33.0.0/22`
-- scan de `ping` avec `nmap -sP`
-  - par exemple `nmap -sP 10.33.0.0/22` pour un ping scan du réseau YNOV
-- `nmap` est un outil de scan de réseau très puissant, on en reparlera !
-
----
-
-Suivant ce que vous faites avec `nmap` il y a moyen que ce soit bien le foutoir sur le réseau YNOV, un peu plus tard dans le TP il y aura une partie pour analyser ce qui passe sur le réseau.
-
-Alors mollo.
-
-🌞**Utilisez `nmap` pour scanner le réseau de votre carte WiFi et trouver une adresse IP libre**
-
-- réinitialiser votre conf réseau (reprenez une IP automatique, en vous déconnectant/reconnectant au réseau par exemple)
-- lancez **un scan de ping** sur le réseau YNOV
-- affichez votre table ARP
-
-### D. Modification d'adresse IP (part 2)
-
-- 🌞 Modifiez de nouveau votre adresse IP vers une adresse IP que vous savez libre grâce à `nmap`
-  - utilisez un ping scan sur le réseau YNOV
-  - montrez moi la commande `nmap` et son résultat
-  - configurez correctement votre gateway pour avoir accès à d'autres réseaux (utilisez toujours la gateway d'YNOV)
-  - prouvez en une suite de commande que vous avez bien l'IP choisie, que votre passerelle est bien définie, et que vous avez un accès internet
-
-> Pour tester l'accès à internet, on ping souvent des addresses IP connues de serveurs sur internet. Comme le server DNS de CloudFlare `1.1.1.1` ou celui de Google `8.8.8.8`.
 
 # II. Exploration locale en duo
 
@@ -373,9 +316,19 @@ Une fois que le serveur DHCP vous a donné une IP, vous enregistrer un fichier a
 🌞Exploration du DHCP, depuis votre PC
 
 - afficher l'adresse IP du serveur DHCP du réseau WiFi YNOV
+```bash 
+- ynce@MacBook-Pro-de-Yanice ~ % ipconfig getpacket en0 | grep server_identifier 
+server_identifier (ip): 10.33.19.254
+```
 - cette adresse a une durée de vie limitée. C'est le principe du ***bail DHCP*** (ou *DHCP lease*). Trouver la date d'expiration de votre bail DHCP
+```bash
+ynce@MacBook-Pro-de-Yanice ~ % ipconfig getpacket en0 | grep lease_time       
+lease_time (uint32): 0x28066
+```
 - vous pouvez vous renseigner un peu sur le fonctionnement de DHCP dans les grandes lignes. On aura sûrement un cours là dessus :)
-
+```bash
+Le protocole DHCP (Dynamic Host Configuration Protocol) est un protocole client/serveur qui fournit automatiquement un hôte IP (Internet Protocol) avec son adresse IP et d'autres informations de configuration associées, telles que le masque de sous-réseau et la passerelle par défaut.i
+```
 ## 2. DNS
 
 Le protocole DNS permet la résolution de noms de domaine vers des adresses IP. Ce protocole permet d'aller sur `google.com` plutôt que de devoir connaître et utiliser l'adresse IP du serveur de Google.  
@@ -385,18 +338,68 @@ Un **serveur DNS** est un serveur à qui l'on peut poser des questions (= effect
 Si votre navigateur fonctionne "normalement" (il vous permet d'aller sur `google.com` par exemple) alors votre ordinateur connaît forcément l'adresse d'un serveur DNS. Et quand vous naviguez sur internet, il effectue toutes les requêtes DNS à votre place, de façon automatique.
 
 - 🌞 trouver l'adresse IP du serveur DNS que connaît votre ordinateur
-
+```grep
+ynce@MacBook-Pro-de-Yanice ~ % cat /etc/resolv.conf | grep nameserver
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 1.1.1.1
+```
 - 🌞 utiliser, en ligne de commande l'outil `nslookup` (Windows, MacOS) ou `dig` (GNU/Linux, MacOS) pour faire des requêtes DNS à la main
 
   - faites un *lookup* (*lookup* = "dis moi à quelle IP se trouve tel nom de domaine")
     - pour `google.com`
+```bash
+    ynce@MacBook-Pro-de-Yanice ~ % nslookup google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 216.58.215.46
+```
     - pour `ynov.com`
+```bash
+ynce@MacBook-Pro-de-Yanice ~ % nslookup ynov.com  
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+Name:	ynov.com
+Address: 104.26.10.233
+Name:	ynov.com
+Address: 104.26.11.233
+Name:	ynov.com
+Address: 172.67.74.226
+```
     - interpréter les résultats de ces commandes
+```bash
+les deux utilisent la meme ip dns
+```
   - déterminer l'adresse IP du serveur à qui vous venez d'effectuer ces requêtes
   - faites un *reverse lookup* (= "dis moi si tu connais un nom de domaine pour telle IP")
     - pour l'adresse `78.74.21.21`
+ ```bash
+ ynce@MacBook-Pro-de-Yanice ~ % nslookup 78.74.21.21
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+21.21.74.78.in-addr.arpa	name = host-78-74-21-21.homerun.telia.com.
+
+Authoritative answers can be found from:
+ ```
     - pour l'adresse `92.146.54.88`
+ ```bash
+ ynce@MacBook-Pro-de-Yanice ~ % nslookup 92.146.54.88
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+** server can't find 88.54.146.92.in-addr.arpa: NXDOMAIN
+ ```
     - interpréter les résultats
+```bash
+Eux aussi utilisent la meme ip dns mais ...
+```
     - *si vous vous demandez, j'ai pris des adresses random :)*
 
 # IV. Wireshark
