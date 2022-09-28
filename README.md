@@ -116,9 +116,8 @@ Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
 ### Questions
 
 - 🌞 à quoi sert la [gateway](../../cours/lexique.md#passerelle-ou-gateway) dans le réseau d'YNOV ?
-```bash 
-En informatique, une passerelle est un dispositif permettant de relier deux réseaux informatiques différents, comme par exemple un réseau local et l'Internet. Dans le réseau Ynov, le gateway va permettre de lier le réseau interne d'ynov avec celui de nos machine.
-```
+* En informatique, une passerelle est un dispositif permettant de relier deux réseaux informatiques différents, comme par exemple un réseau local et l'Internet. Dans le réseau Ynov, le gateway va permettre de de vérifier la sécurité du réseau qui cherche à se connecter dans le reseau ynov.
+
 ## 2. Modifications des informations
 
 ### A. Modification d'adresse IP (part 1)  
@@ -479,6 +478,16 @@ Un peu austère aux premiers abords, une manipulation très basique permet d'avo
   - prenez moi des screens des trames en question
   - on va prendre l'habitude d'utiliser Wireshark souvent dans les cours, pour visualiser ce qu'il se passe
 
+![HF](https://user-images.githubusercontent.com/93198837/192851136-5ac15832-6148-485a-a7cb-d2bba9576523.png)
+
+
+![HF](https://user-images.githubusercontent.com/93198837/192851415-d5302ab7-48e0-427a-ba5b-d86d713bb649.png)
+
+
+![HF](https://user-images.githubusercontent.com/93198837/192851478-49ec148d-74f4-4816-8986-e046cf008940.png)
+
+
+
 # Bilan
 
 **Vu pendant le TP :**
@@ -509,3 +518,4 @@ Si deux ordinateurs reliés physiquement possèdent une adresse IP dans le même
   - **chez vous, c'est votre Box qui fait les trois :)**
 
 🌞 Ce soleil est un troll. **Lisez et prenez le temps d'appréhender le texte de conclusion juste au dessus si ces notions ne vous sont pas familières.**
+![HF](https://user-images.githubusercontent.com/93198837/192851762-caad1bbd-db43-44f0-8136-26736e7fef14.png)
