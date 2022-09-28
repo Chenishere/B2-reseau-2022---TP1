@@ -74,22 +74,30 @@ En utilisant la ligne de commande (CLI) de votre OS :
 
 - nom, [adresse MAC](../../cours/lexique.md#mac-media-access-control) et adresse IP de l'interface WiFi
 ```bash
-ynce@MacBook-Pro-de-Yanice ~ % ifconfig en0
-en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
-	options=6463<RXCSUM,TXCSUM,TSO4,TSO6,CHANNEL_IO,PARTIAL_CSUM,ZEROINVERT_CSUM>
-	ether f0:18:98:77:25:f9 
-	inet6 fe80::8d2:1520:e48b:5408%en0 prefixlen 64 secured scopeid 0x6 
-	inet 10.33.19.102 netmask 0xfffffc00 broadcast 10.33.19.255
-	nd6 options=201<PERFORMNUD,DAD>
-	media: autoselect
-	status: active
+ynce@MacBook-Pro-de-Yanice ~ % ifconfig en0 | grep 'inet ' 
+	inet 192.168.1.77 netmask 0xffffff00 broadcast 192.168.1.255
 ```
 - nom, [adresse MAC](../../cours/lexique.md#mac-media-access-control) et adresse IP de l'interface Ethernet
-
+```bash
+ynce@MacBook-Pro-de-Yanice ~ % ifconfig | grep ether
+	ether ac:de:48:00:11:22 
+	ether f2:18:98:77:25:f9 
+	ether f0:18:98:77:25:f9 
+	ether 82:fb:68:46:34:05 
+	ether 82:fb:68:46:34:04 
+	ether 82:fb:68:46:34:01 
+	ether 82:fb:68:46:34:00 
+	ether 82:fb:68:46:34:01 
+	ether 2a:c7:4a:ff:75:66 
+	ether 2a:c7:4a:ff:75:66
+```
 **🌞 Affichez votre gateway**
 
 - utilisez une commande pour connaître l'adresse IP de la [passerelle](../../cours/lexique.md#passerelle-ou-gateway) de votre carte WiFi
-  
+ ```bash
+ ynce@MacBook-Pro-de-Yanice ~ % route get default | grep gateway
+    gateway: 192.168.1.254
+ ```
 ### En graphique (GUI : Graphical User Interface)
 
 En utilisant l'interface graphique de votre OS :  
@@ -97,6 +105,13 @@ En utilisant l'interface graphique de votre OS :
 **🌞 Trouvez comment afficher les informations sur une carte IP (change selon l'OS)**
 
 - trouvez l'IP, la MAC et la [gateway](../../cours/lexique.md#passerelle-ou-gateway) pour l'interface WiFi de votre PC
+```bash
+Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
+<img width="349" alt="Capture d’écran 2022-09-28 à 16 00 14" src="https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png">
+
+<img width="642" alt="Capture d’écran 2022-09-28 à 15 44 48" src="https://user-images.githubusercontent.com/93198837/192796081-6d5885a5-819e-4f22-ba75-fa9dd900459b.png">
+```
+
 
 ### Questions
 
