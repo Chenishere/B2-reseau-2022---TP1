@@ -116,6 +116,9 @@ En informatique, une passerelle est un dispositif permettant de relier deux rés
   - valeur entre 1 et 254 compris
 
 🌞 **Il est possible que vous perdiez l'accès internet.** Que ce soit le cas ou non, expliquez pourquoi c'est possible de perdre son accès internet en faisant cette opération.
+```bash
+car les paquets ne sont pas envoyé a la bonne ip (exemple du facteur : pas a la bonne adresse )
+```
 
 ---
 
