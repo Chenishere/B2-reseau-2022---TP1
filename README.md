@@ -107,9 +107,9 @@ En utilisant l'interface graphique de votre OS :
 - trouvez l'IP, la MAC et la [gateway](../../cours/lexique.md#passerelle-ou-gateway) pour l'interface WiFi de votre PC
 ```bash
 Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
-![Alt text](https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png)
+![HF](https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png)
 
-<img width="642" alt="Capture d’écran 2022-09-28 à 15 44 48" src="https://user-images.githubusercontent.com/93198837/192796081-6d5885a5-819e-4f22-ba75-fa9dd900459b.png">
+![HF](https://user-images.githubusercontent.com/93198837/192796081-6d5885a5-819e-4f22-ba75-fa9dd900459b.png)
 ```
 
 
@@ -165,7 +165,7 @@ Ok c'est la partie tendue. Prenez un câble. Branchez-le des deux côtés. **Bap
 
 ## Création du réseau (oupa)
 
-Cette étape peut paraître cruciale. En réalité, elle n'existe pas à proprement parlé. On ne peut pas "créer" un réseau. Si une machine possède une carte réseau, et si cette carte réseau porte une adresse IP, alors cette adresse IP se trouve dans un réseau (l'adresse de réseau). Ainsi, le réseau existe. De fait.  
+Cette étape peut paraître cruciale. En réalité, elle n'existe pas à proprement parlé. On ne peut pas "créer" un réseau. Si une machine possède une carte réseau, et si cette carte réseau porte une adresse IP, alors cette adresse IP se trouve dans un réseau (l'adresse de réseau). Ainsi, le réseau existe. De fait.
 
 **Donc il suffit juste de définir une adresse IP sur une carte réseau pour que le réseau existe ! Bap.**
 
@@ -180,9 +180,21 @@ Cette étape peut paraître cruciale. En réalité, elle n'existe pas à proprem
 - utilisez `ping` pour tester la connectivité entre les deux machines
 - affichez et consultez votre table ARP
 
+```bash
+ciremy@ciremy-Aspire-A315-56:~/work/ynov/tp linux/tp-linux$ ping 192.168.0.2
+PING 192.168.0.2 (192.168.0.2) 56(84) bytes of data.
+64 bytes from 192.168.0.2: icmp_seq=35 ttl=128 time=1.28 ms
+64 bytes from 192.168.0.2: icmp_seq=36 ttl=128 time=1.98 ms
+ciremy@ciremy-Aspire-A315-56:~/work/ynov/tp linux/tp-linux$ arp -a
+_gateway (10.33.19.254) à 00:c0:e7:e0:04:4e [ether] sur wlp2s0
+? (169.254.198.183) à b0:22:7a:e1:c7:0e [ether] sur enp1s0
+? (192.168.0.2) à b0:22:7a:e1:c7:0e [ether] sur enp1s0
+
+```
+
 ## 4. Utilisation d'un des deux comme gateway
 
-Ca, ça peut toujours dépann. Comme pour donner internet à une tour sans WiFi quand y'a un PC portable à côté, par exemple. 
+Ca, ça peut toujours dépann. Comme pour donner internet à une tour sans WiFi quand y'a un PC portable à côté, par exemple.
 
 L'idée est la suivante :
 
@@ -197,7 +209,7 @@ L'idée est la suivante :
     WiFi                WiFi
      |                   |
     PC 1 ---Ethernet--- PC 2
-    
+
 - internet joignable en direct par le PC 1
 - internet joignable en direct par le PC 2
 ```
@@ -210,7 +222,7 @@ L'idée est la suivante :
      X                  WiFi
      |                   |
     PC 1 ---Ethernet--- PC 2
-    
+
 - internet joignable en direct par le PC 2
 - internet joignable par le PC 1, en passant par le PC 2
 ```
@@ -231,13 +243,28 @@ L'idée est la suivante :
   - encore une fois, un ping vers un DNS connu comme `1.1.1.1` ou `8.8.8.8` c'est parfait
 - 🌞 utiliser un `traceroute` ou `tracert` pour bien voir que les requêtes passent par la passerelle choisie (l'autre le PC)
 
+```bash
+ciremy@ciremy-Aspire-A315-56:~/work/ynov/tp linux/tp-linux$ ping 192.168.137.1
+PING 192.168.137.1 (192.168.137.1) 56(84) bytes of data.
+64 bytes from 192.168.137.1: icmp_seq=1 ttl=128 time=2.44 ms
+
+ciremy@ciremy-Aspire-A315-56:~/work/ynov/tp linux/tp-linux$ ping 1.1.1.1
+*PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=54 time=52.3 ms
+
+ciremy@ciremy-Aspire-A315-56:~/work/ynov/tp linux/tp-linux$ traceroute 1.1.1.1
+traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
+ 1  192.168.137.1 (192.168.137.1)  8.934 ms  8.874 ms  8.859 ms
+
+```
+
 ## 5. Petit chat privé
 
 On va créer un chat extrêmement simpliste à l'aide de `netcat` (abrégé `nc`). Il est souvent considéré comme un bon couteau-suisse quand il s'agit de faire des choses avec le réseau.
 
-Sous GNU/Linux et MacOS vous l'avez sûrement déjà, sinon débrouillez-vous pour l'installer :). Les Windowsien, ça se passe [ici](https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip) (from https://eternallybored.org/misc/netcat/).  
+Sous GNU/Linux et MacOS vous l'avez sûrement déjà, sinon débrouillez-vous pour l'installer :). Les Windowsien, ça se passe [ici](https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip) (from https://eternallybored.org/misc/netcat/).
 
-Une fois en possession de `netcat`, vous allez pouvoir l'utiliser en ligne de commande. Comme beaucoup de commandes sous GNU/Linux, Mac et Windows, on peut utiliser l'option `-h` (`h` pour `help`) pour avoir une aide sur comment utiliser la commande.  
+Une fois en possession de `netcat`, vous allez pouvoir l'utiliser en ligne de commande. Comme beaucoup de commandes sous GNU/Linux, Mac et Windows, on peut utiliser l'option `-h` (`h` pour `help`) pour avoir une aide sur comment utiliser la commande.
 
 Sur un Windows, ça donne un truc comme ça :
 
@@ -271,25 +298,36 @@ port numbers can be individual or ranges: m-n [inclusive]
 
 L'idée ici est la suivante :
 
-- l'un de vous jouera le rôle d'un *serveur*
-- l'autre sera le *client* qui se connecte au *serveur*
+- l'un de vous jouera le rôle d'un _serveur_
+- l'autre sera le _client_ qui se connecte au _serveur_
 
-Précisément, on va dire à `netcat` d'*écouter sur un port*. Des ports, y'en a un nombre fixe (65536, on verra ça plus tard), et c'est juste le numéro de la porte à laquelle taper si on veut communiquer avec le serveur.
+Précisément, on va dire à `netcat` d'_écouter sur un port_. Des ports, y'en a un nombre fixe (65536, on verra ça plus tard), et c'est juste le numéro de la porte à laquelle taper si on veut communiquer avec le serveur.
 
-Si le serveur écoute à la porte 20000, alors le client doit demander une connexion en tapant à la porte numéro 20000, simple non ?  
+Si le serveur écoute à la porte 20000, alors le client doit demander une connexion en tapant à la porte numéro 20000, simple non ?
 
 Here we go :
 
-- 🌞 **sur le PC *serveur*** avec par exemple l'IP 192.168.1.1
+- 🌞 **sur le PC _serveur_** avec par exemple l'IP 192.168.1.1
   - `nc.exe -l -p 8888`
     - "`netcat`, écoute sur le port numéro 8888 stp"
   - il se passe rien ? Normal, faut attendre qu'un client se connecte
-- 🌞 **sur le PC *client*** avec par exemple l'IP 192.168.1.2
+- 🌞 **sur le PC _client_** avec par exemple l'IP 192.168.1.2
   - `nc.exe 192.168.1.1 8888`
     - "`netcat`, connecte toi au port 8888 de la machine 192.168.1.1 stp"
   - une fois fait, vous pouvez taper des messages dans les deux sens
 - appelez-moi quand ça marche ! :)
   - si ça marche pas, essayez d'autres options de `netcat`
+
+```bash
+ciremy@ciremy-Aspire-A315-56:~/work/ynov/tp linux/tp-linux$ nc 192.168.137.1 8888
+hellohg
+
+sup
+sup
+sup
+sup
+
+```
 
 ---
 
@@ -310,13 +348,13 @@ Le but est de configurer votre firewall plutôt que de le désactiver
 - 🌞 Autoriser les `ping`
   - configurer le firewall de votre OS pour accepter le `ping`
   - aidez vous d'internet
-  - on rentrera dans l'explication dans un prochain cours mais sachez que `ping` envoie un message *ICMP de type 8* (demande d'ECHO) et reçoit un message *ICMP de type 0* (réponse d'écho) en retour
+  - on rentrera dans l'explication dans un prochain cours mais sachez que `ping` envoie un message _ICMP de type 8_ (demande d'ECHO) et reçoit un message _ICMP de type 0_ (réponse d'écho) en retour
 - 🌞 Autoriser le traffic sur le port qu'utilise `nc`
   - on parle bien d'ouverture de **port** TCP et/ou UDP
   - on ne parle **PAS** d'autoriser le programme `nc`
   - choisissez arbitrairement un port entre 1024 et 20000
   - vous utiliserez ce port pour [communiquer avec `netcat`](#5-petit-chat-privé-) par groupe de 2 toujours
-  - le firewall du *PC serveur* devra avoir un firewall activé et un `netcat` qui fonctionne
+  - le firewall du _PC serveur_ devra avoir un firewall activé et un `netcat` qui fonctionne
   
 # III. Manipulations d'autres outils/protocoles côté client
 
