@@ -109,7 +109,7 @@ En utilisant l'interface graphique de votre OS :
 Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
 ![HF](https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png)
 
-![HF](https://user-images.githubusercontent.com/93198837/192796081-6d5885a5-819e-4f22-ba75-fa9dd900459b.png)
+![HF](https://user-images.githubusercontent.com/93198837/192853830-10d91405-cd12-489f-a173-d6b150fe7af9.png)
 
 
 
@@ -128,10 +128,12 @@ Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
 - ne changez que le dernier octet
   - par exemple pour `10.33.1.10`, ne changez que le `10`
   - valeur entre 1 et 254 compris
+  ![HF](https://user-images.githubusercontent.com/93198837/192854618-8a98e91a-52a2-4781-adb9-121b43578d72.png)
+
 
 🌞 **Il est possible que vous perdiez l'accès internet.** Que ce soit le cas ou non, expliquez pourquoi c'est possible de perdre son accès internet en faisant cette opération.
 ```bash
-car les paquets ne sont pas envoyé a la bonne ip (exemple du facteur : pas a la bonne adresse )
+Les paquets ne sont pas envoyé à la bonne ip (exemple du facteur : pas à la bonne adresse )
 ```
 
 ---
