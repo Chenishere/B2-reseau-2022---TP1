@@ -105,12 +105,12 @@ En utilisant l'interface graphique de votre OS :
 **🌞 Trouvez comment afficher les informations sur une carte IP (change selon l'OS)**
 
 - trouvez l'IP, la MAC et la [gateway](../../cours/lexique.md#passerelle-ou-gateway) pour l'interface WiFi de votre PC
-```bash
+
 Voici deux screen ou on peut retrouver : l'ip, la mac et la gateway
 ![HF](https://user-images.githubusercontent.com/93198837/192799063-cdc39869-5efc-456b-865b-6dc657bc1032.png)
 
 ![HF](https://user-images.githubusercontent.com/93198837/192796081-6d5885a5-819e-4f22-ba75-fa9dd900459b.png)
-```
+
 
 
 ### Questions
