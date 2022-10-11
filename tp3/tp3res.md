@@ -47,9 +47,6 @@ dropped privs to tcpdump
 tcpdump: listening on enp0s3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 2 packets captured
 ```
-
-🦈 **Capture réseau `tp3_arp.pcapng`** qui contient un ARP request et un ARP reply
-
 ## II. Routage
 
 ### 1. Mise en place du routage
@@ -130,9 +127,6 @@ PING 10.3.2.12 (10.3.2.12) 56(84) bytes of data.
 | ?     | Pong        |`10.3.2.12`|`Marcel` `08:00:27:a8:a9:56` |`10.3.1.11`     |`John` `08:00:27:28:cf:36`   |
 
 
-
-🦈 **Capture réseau `tp3_routage_marcel.pcapng`**
-
 ### 3. Accès internet
 
 🌞**Donnez un accès internet à vos machines**
@@ -181,7 +175,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 
 - capturez le ping depuis `John` avec `tcpdump` :
 
-🦈 **Capture réseau `tp3_routage_internet.pcapng`**
+
 
 - analysez un ping aller et le retour qui correspond et mettez dans un tableau :
 
@@ -268,6 +262,8 @@ PING gitlab.com (172.65.251.78) 56(84) bytes of data.
 ### 2. Analyse de trames
 
 🌞**Analyse de trames**
+
+- Maintenant passons à l’analyse de trames =>>>
 
 ```
 #PC John
