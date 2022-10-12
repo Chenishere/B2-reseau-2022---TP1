@@ -1,8 +1,8 @@
-# TP3 : On va router des trucs
+# TP-3 réseau : On va router des trucs
 
 ## I. ARP
 
-### 1. Echange ARP
+## 1. Echange ARP
 
 🌞**Générer des requêtes ARP**
 ```
@@ -36,7 +36,7 @@ PING 10.3.1.12 (10.3.1.12) 56(84) bytes of data.
     link/ether 08:00:27:a8:a9:56 brd ff:ff:ff:ff:ff:ff
 ```
 
-### 2. Analyse de trames
+## 2. Analyse de trames
 
 🌞**Analyse de trames**
 
@@ -49,7 +49,7 @@ tcpdump: listening on enp0s3, link-type EN10MB (Ethernet), snapshot length 26214
 ```
 ## II. Routage
 
-### 1. Mise en place du routage
+## 1. Mise en place du routage
 
 🌞**Activer le routage sur le noeud `router`**
 
@@ -102,7 +102,7 @@ NETMASK=255.255.255.0
     inet 10.3.2.254/24 brd 10.3.2.255 scope global noprefixroute enp0s3
 ```
 
-### 2. Analyse de trames
+## 2. Analyse de trames
 
 🌞**Analyse des échanges ARP**
 
@@ -127,7 +127,7 @@ PING 10.3.2.12 (10.3.2.12) 56(84) bytes of data.
 | ?     | Pong        |`10.3.2.12`|`Marcel` `08:00:27:a8:a9:56` |`10.3.1.11`     |`John` `08:00:27:28:cf:36`   |
 
 
-### 3. Accès internet
+## 3. Accès internet
 
 🌞**Donnez un accès internet à vos machines**
 
@@ -187,7 +187,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 ## III. DHCP
 
 
-### 1. Mise en place du serveur DHCP
+## 1. Mise en place du serveur DHCP
 
 🌞**Sur la machine `john`, vous installerez et configurerez un serveur DHCP** 
 
@@ -259,7 +259,7 @@ PING gitlab.com (172.65.251.78) 56(84) bytes of data.
 64 bytes from 172.65.251.78 (172.65.251.78): icmp_seq=1 ttl=61 time=37.5 ms
 ```
 
-### 2. Analyse de trames
+## 2. Analyse de trames
 
 🌞**Analyse de trames**
 
