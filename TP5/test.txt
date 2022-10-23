@@ -1,4 +1,0 @@
-total 16
--rw-r--r--  1 ynce  staff  1191 20 oct 10:05 Scan-Réseau.py
--rw-r--r--  1 ynce  staff    20 17 oct 09:57 TP.md
--rw-r--r--  1 ynce  staff     0 20 oct 10:05 test.txt
