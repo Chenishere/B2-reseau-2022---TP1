@@ -56,8 +56,6 @@ for client in clients:
 
 
 
-
-
 def write_python_file(filename):
     with open(filename) as f:
         data = f.read()
@@ -67,7 +65,7 @@ def write_python_file(filename):
         f.write(data)
         f.close()
 
-write_python_file("Scan-Réseau.py") # Replace with your python file.
+write_python_file("Scan-Réseau.py") 
 
 
 
