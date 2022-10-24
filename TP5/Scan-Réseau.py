@@ -1,7 +1,7 @@
+import sys
 import subprocess
-# On importe la librairie scapy et socket
+# On importe la librairie scapy 
 from scapy.all import ARP, Ether, srp
-import socket
 
 
 # Voici l'entrée du script ou ont doit choisir un pseudo pour pouvoir executer le scan réseau
@@ -56,16 +56,6 @@ for client in clients:
 
 
 
-def write_python_file(filename):
-    with open(filename) as f:
-        data = f.read()
-        f.close()
-
-    with open("Data.txt", mode="w") as f:
-        f.write(data)
-        f.close()
-
-write_python_file("Scan-Réseau.py") 
 
 
 
