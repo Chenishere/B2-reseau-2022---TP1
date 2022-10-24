@@ -36,7 +36,7 @@ Adresse IP          Adresse MAC
 ```
 - Ici, la commande "python3 Scan-Réseau.py | tee data.txt" permet d'executer le scan tout en sauvegardant son contenu dans le fichier data.txt
 
-### Dernière étape, check si notre scan réseau à bien était enregistré :
+### Dernière étape, check si notre scan réseau a bien été enregistré :
 
 - Dans le fichier Data.txt on retrouve ; 
 ```bash
@@ -52,3 +52,5 @@ Adresse IP          Adresse MAC
 192.168.1.254       f4:ca:e5:58:55:65
 ```
 C'est bel est bien le contenenu du script que nous avons executé !
+
+![Alt text](https://imageio.forbes.com/specials-images/imageserve/60427d207368a72e3811afd5/Happy-african-couple-shake-hand-of-insurer-buy-insurance-services/960x0.jpg?format=jpg&width=960)
