@@ -14,6 +14,14 @@ Dans ce TP on va explorer un peu les protocoles TCP et UDP. On va aussi mettre e
 
 Faites-vous un petit top 5 des applications que vous utilisez sur votre PC souvent, des applications qui utilisent le réseau : un site que vous visitez souvent, un jeu en ligne, Spotify, j'sais po moi, n'importe.
 
+```
+1 - Spotify
+2 - Discord
+3 - Chrome
+4 - Twitch
+5 - Youtube
+```
+
 🌞 **Déterminez, pour ces 5 applications, si c'est du TCP ou de l'UDP**
 
 - avec Wireshark, on va faire les chirurgiens réseau
@@ -21,10 +29,18 @@ Faites-vous un petit top 5 des applications que vous utilisez sur votre PC souve
   - IP et port du serveur auquel vous vous connectez
   - le port local que vous ouvrez pour vous connecter
 
-> Dès qu'on se connecte à un serveur, notre PC ouvre un port random. Une fois la connexion TCP ou UDP établie, entre le port de notre PC et le port du serveur qui est en écoute, on parle de tunnel TCP ou de tunnel UDP.
-
-
-> Aussi, TCP ou UDP ? Comment le client sait ? Il sait parce que le serveur a décidé ce qui était le mieux pour tel ou tel type de trafic (un jeu, une page web, etc.) et que le logiciel client est codé pour utiliser TCP ou UDP en conséquence.
+```
+1 - Spotify : ↓
+IP + port serveur => 35.186.224.40:443 /  port local : 49570
+2 - Discord : ↓
+IP + port serveur => 162.159.136.234:443 / port local : 40472
+3 - Chrome : ↓
+IP + port serveur => 66.22.199.20:443 /  port local : 62624
+4 - Twitch : ↓
+IP + port serveur => 52.223.198.2:443 /  port local : 52113
+5 - Youtube : ↓
+IP + port serveur => 91.68.245.15:443 /  port local : 53363
+```
 
 🌞 **Demandez l'avis à votre OS**
 
@@ -32,6 +48,23 @@ Faites-vous un petit top 5 des applications que vous utilisez sur votre PC souve
 - il est aussi responsable de l'ouverture d'un port quand une application demande à se connecter à distance vers un serveur
 - bref il voit tout quoi
 - utilisez la commande adaptée à votre OS pour repérer, dans la liste de toutes les connexions réseau établies, la connexion que vous voyez dans Wireshark, pour chacune des 5 applications
+
+```
+ynce@XchenHost:~$ ss -tpn | grep spotify                                    
+ESTAB 0      0       10.33.17.218:49570 35.186.224.40:443    users:(("spotify",pid=20078,fd=32)) 
+[...]
+ynce@XchenHost:~$ ss -tpn | grep Discord
+ESTAB 0      0       10.33.17.218:42690 162.159.136.234:443  users:(("Discord",pid=20618,fd=34))
+[...]
+ynce@XchenHost:~$ ss -tpn | grep prospect
+ESTAB 0      0       10.33.17.218:56436   52.97.212.82:443  users:(("chrome",pid=21202,fd=26))
+#Twitch
+ynce@XchenHost:~$ ss -tpn | grep chrome
+ESTAB 73     0       10.33.17.218:58370  216.58.213.74:443  users:(("chrome",pid=19424,fd=66))
+#Youtube
+ynce@XchenHost:~$ ss -tpn | grep chrome
+ESTAB      0      0       10.33.17.218:38506 142.250.74.246:443  users:(("chrome",pid=19424,fd=53))
+```
 
 **Il faudra ajouter des options adaptées aux commandes pour y voir clair. Pour rappel, vous cherchez des connexions TCP ou UDP.**
 
